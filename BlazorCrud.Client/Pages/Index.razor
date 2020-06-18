@@ -1,0 +1,134 @@
+﻿@page "/"
+@inject LocalStorage Storage
+@inject Sotsera.Blazor.Toaster.IToaster Toaster
+
+@if (Storage.GetItem("Transaction") == "logout")
+{
+    Toaster.Info("you have been successfully logged out of the system.", "Logged Out");
+    Storage.RemoveItem("Transaction");
+}
+
+<div class="row">
+    <div class="col-md-11">
+        <BSCarousel NumberOfItems="@items.Count" bind-ActiveIndex="@SecondIndex" PauseOnHover="true">
+            <BSCarouselIndicators NumberOfItems="@items.Count" bind-ActiveIndex="@SecondIndex" />
+            <div class="carousel-inner" style="height:500px">
+                @for (int i = 0; i < items.Count; i++)
+                {
+                    Item item = items[i];
+                    <BSCarouselItem IsActive="@(SecondIndex == i)" src="@item.Source" alt="@item.Alt">
+                        <BSCarouselCaption Class="carousel-text" CaptionText="@item.Caption" HeaderText="@item.Header" />
+                    </BSCarouselItem>
+                }
+            </div>
+            <BSCarouselControl CarouselDirection="CarouselDirection.Previous" NumberOfItems="@items.Count" bind-ActiveIndex="@SecondIndex" />
+            <BSCarouselControl CarouselDirection="CarouselDirection.Next" NumberOfItems="@items.Count" bind-ActiveIndex="@SecondIndex" />
+        </BSCarousel>
+    </div>
+</div>
+
+<div class="row" style="height:10px;">
+    <div class="col-md-11"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        @*<BSImage IsResponsive="true" src=@_apiImage />*@
+        <h1>March for Our Planet</h1>
+        <p>What is this organization about?</p>
+        <p>The coronavirus pandemic of 2020 is an awful event in human history. Many people have died and as of this writing, the cases and deaths are still rising. Out of all the negativity, there
+        are several positive trends.
+        <ol>
+            <li>The air and sky look and smell cleaner. This is likely an effect brought on by fewer cars, trucks and airplanes traveling around the globe.</li>
+            <li>The traffic getting to and from places is much lighter than normal, making errands more effective. This is likely due to "task stacking" 
+            by people who want to limit their exposure to others during the pandemic.</li>
+            <li>Those people who's jobs can be done remotely have done so with little interruption in normal productivity.</li>
+            <li>Technology lagards are forced to learn new ways to communicate, which gives everyone even more ways to affordably remain connected. </li>
+        </ol>
+        </p>
+        <p><a class="btn btn-secondary" href=@System.String.Concat(Storage.GetItem("environment_uri").Replace("/api",""),"/swagger/index.html") target="_blank" role="button">View details &raquo;</a></p>
+    </div>
+</div>
+    <div class="col-md-1"></div>
+    <div class="row">
+        <div class="col-md-12">
+            @*<BSImage IsResponsive="true" src=@_typeaheadImage />*@
+            <h2>Starting a Movement</h2>
+            <p>March for Our Planet is nothing if not "on the nose" when it comes down to the mission of the non-profit organization. Here is our mission.</p>
+            <p>
+                We want to be the uniting factor for organizations around the globe to commit to do what they can to give our planet a month to breathe each year.
+                We want to analyze, certify and track data related to these conservation efforts so that the human race can see the value in reducing our collective carbon footprint.
+                We want to recognize and celebrate ALL of the participating organizations so that the world knows that the organizations on the March for Out Planet list of participants
+                are environmentally conscious and are committed to making a difference every year.
+            </p>
+            <p><a class="btn btn-secondary" href="claim/typeahead" role="button">View details &raquo;</a></p>
+        </div>
+        
+     </div>
+
+        <div class="col-md-1"></div>
+        <div class="row">
+            <div class="col-md-12">
+                @*<BSImage IsResponsive="true" src=@_alexaImage />*@
+                <h2>What can organizations do?</h2>
+                <p>
+                    During the coronavirus pandemic, we have witnessed a shift in the prevalence and even the attitude toward remote work. We have noticed people task stacking, as we previously mentioned. The planet
+                    is making it just fine despite all the challenges. Of course there are individual stories that point to a different truth, however, for a HUGE portion of the planet, the shift
+                    to a new norm has shown many positive effects. Here are some things an organization can do each March to give our planet a chance to regenerate.
+                </p>
+                <ul>
+                    <li>Allow remote work for as many people as possible during March</li>
+                    <li>Limit corporate travel or stop the travel altogether</li>
+                    <li>Encourage and reward workers that non-vehicular modes of transportation to and from work</li>
+                    <li>Take the month off completely. Use the time to re-tool production areas, clean and organize. Do these tasks in shifts so that most people in the organization can enjoy some time away.</li>
+                    <li>Sponsor / Co-Sponsor alternative forms of transportation within specific settlements.</li>
+
+                </ul>
+                <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+            </div>
+        </div>
+
+
+@code {
+    private string _apiImage = @"..\img\apis.jpg";
+    private string _typeaheadImage = @"..\img\type-ahead.jpg";
+    private string _alexaImage = @"..\img\alexa.jpg";
+    //private string _automateImage = @"..\img\automate.jpg";
+
+    IList<Item> items = new List<Item>
+    {
+        new Item {
+        Source = @"..\img\patients.jpg",
+        Alt ="Empty Streets Not Baren Economies",
+        Header = "Empty Streets Not Baren Economies",
+        Caption = "With planning, the economies could thrive during our March."
+    },
+    new Item {
+        Source = @"..\img\providers.jpg",
+         Alt ="More Blues and Greens",
+        Header = "More Blues and Greens",
+        Caption = "We are all healthier when there is more blue and green around us."
+    },
+    new Item {
+        Source = @"..\img\claims.jpg",
+        Alt ="Collective Thought",
+        Header = "Collective Thought",
+        Caption = "This concept means different things in different societies. Let's unite here."
+    }
+    };
+
+    private int _secondIndex;
+    int SecondIndex
+    {
+        get => _secondIndex;
+        set { _secondIndex = value; StateHasChanged(); }
+    }
+
+    class Item
+    {
+        public string Source { get; set; }
+        public string Alt { get; set; }
+        public string Caption { get; set; }
+        public string Header { get; set; }
+    }
+}
