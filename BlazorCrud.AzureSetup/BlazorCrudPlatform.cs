@@ -12,8 +12,8 @@ namespace BlazorCrud.AzureSetup
         static int Main(string[] args)
         {
             string BlazorCrudClient = "MarchForOurPlanet";
-            string BlazorCrudApi = "becksapi";
-            string BlazorCrudResourceGroup = "BlazorCrudClient20200614080710ResourceGroup";
+            string BlazorCrudApi = "https://blazorcrudserver20200616083529.azurewebsites.net/api";
+            string BlazorCrudResourceGroup = "BlazorCrudServer20200616083529ResourceGroup";
 
             // Test if arguments were supplied
             if (args.Length == 0)

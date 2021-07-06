@@ -124,8 +124,8 @@ namespace BlazorCrud.Shared.Data
 
                 users.AddRange(
                     new User[] {
-                        new User { Username = "bryan@marchforourplanet.com", Password = "Password123", FirstName = "Bryan", LastName = "Howell", Email = "bryan@marchforourplanet.com" },
-                        new User { Username = "carrie@marchforourplanet.com", Password = "Password123", FirstName = "Carrie", LastName = "Howell", Email = "carrie@marchforourplanet.com" }
+                        new User { Username = "bryan@youmadeit.com", Password = "Password123", FirstName = "Bryan", LastName = "Howell", Email = "bryan@youmadeit.com" }
+                        
                 });
 
                 foreach (User u in users)
