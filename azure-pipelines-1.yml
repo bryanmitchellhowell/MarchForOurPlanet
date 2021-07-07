@@ -24,7 +24,7 @@ stages:
       inputs:
         command: buildAndPush
         dockerfile: '$(Build.SourcesDirectory)/dockerfile'
-        repository: thbst16/blazor-crud
+        repository: bryanmitchellhowell/MarchForOurPlanet
         containerRegistry: dockerhub-connection
         tags: |
           $(Build.BuildId)

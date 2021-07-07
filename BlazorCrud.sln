@@ -20,7 +20,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		azure-pipelines.yml = azure-pipelines.yml
 		dockerfile = dockerfile
 		LICENSE = LICENSE
+		publish.profilesettings.txt = publish.profilesettings.txt
 		README.md = README.md
+		workflow.txt = workflow.txt
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorCrud.AzureSetup", "BlazorCrud.AzureSetup\BlazorCrud.AzureSetup.csproj", "{87B98756-3615-4C5F-BAB4-F2FC90388338}"
